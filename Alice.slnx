@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Alice/Alice.vcxproj" Id="b15ec49e-a109-4e0d-988a-a6b6a0631c3c" />
+</Solution>

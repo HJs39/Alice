@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "5dc3ae63247259e209f8a93c0be9369c094e6783bd0b9df41545067e4d807da2e5339509da03cfdb1ea1c2f9642b1fad33124b7b2ec7e649442cc6e561b0a3f9"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/tronkko/dirent@1.26",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "tronkko/dirent"
+}
+  ]
+}

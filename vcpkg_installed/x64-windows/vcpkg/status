@@ -1,0 +1,214 @@
+Package: vcpkg-cmake-config
+Version: 2026-07-21
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1ce3ec39d11f02e363402d580af4ae621036decb38e72036c4d51a492d8711de
+Status: install ok installed
+
+Package: vcpkg-cmake
+Version: 2025-08-07
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 429a4d78fb5b0d086d890b7521326f2aa4d65dc24cb450e58a99aea3ae41f79f
+Status: install ok installed
+
+Package: zlib
+Version: 1.3.2
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f06c7de59b5fb016d0340094ad5bff204a74ccbb51bc3136371e801da6b45788
+Description: A compression library
+Status: install ok installed
+
+Package: curl
+Version: 8.22.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2313c843c41ad0955ce4fafb1f6133fa2d9cc5be3ef8cb84c1da15c423ebd733
+Description: A library for transferring data with URLs
+Default-Features: non-http, ssl
+Status: install ok installed
+
+Package: curl
+Feature: non-http
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enables protocols beyond HTTP/HTTPS/HTTP2/HTTP3
+Status: install ok installed
+
+Package: curl
+Feature: ssl
+Architecture: x64-windows
+Multi-Arch: same
+Description: Default SSL / TLS implementation.
+Status: install ok installed
+
+Package: curl
+Feature: sspi
+Architecture: x64-windows
+Multi-Arch: same
+Description: SSPI support
+Status: install ok installed
+
+Package: opus
+Version: 1.6.1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 60ddc006b3e2856f7c19481cc04303a20c41791ed4a13bd5a9be3449f871aad4
+Description: Totally open, royalty-free, highly versatile audio codec
+Status: install ok installed
+
+Package: vcpkg-cmake-get-vars
+Version: 2025-05-29
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: c0164b1230c3b78d36b56c91d6f8640161ad4efb653b608507ef185557ab3544
+Status: install ok installed
+
+Package: openssl
+Version: 3.6.4
+Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-cmake-get-vars
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 2fd2bd6d56f94a6c8a4bf0eede6c7e12f346fcdd308343042a04e4bce91a97c9
+Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
+Status: install ok installed
+
+Package: nlohmann-json
+Version: 3.12.0
+Port-Version: 2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 44ab5baa1582b60f22aaeb0251cfa4d9176b7bcb32dcc3d3b4e1524ca763f154
+Description: JSON for Modern C++
+Status: install ok installed
+
+Package: dpp
+Version: 10.1.5
+Depends: nlohmann-json, openssl, opus, vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 108cf3fdb919fe7176b6b5aa265af2aae1b366ac775d1b9fde9fe804406b0c6a
+Description: D++ Extremely Lightweight C++ Discord Library.
+Status: install ok installed
+
+Package: fmt
+Version: 12.2.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 49b6ab51e75d3747549115f2884b1d6e04a69274940dbc5b0a160875b7029f48
+Description: {fmt} is an open-source formatting library providing a fast and safe alternative to C stdio and C++ iostreams.
+Status: install ok installed
+
+Package: vcpkg-make
+Version: 2026-07-09
+Depends: vcpkg-cmake-get-vars
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 52b6c12f3a8d7bdcca46d1143c7554eb5b5e10084f323759befea459a7f315e1
+Status: install ok installed
+
+Package: tre
+Version: 0.8.0
+Port-Version: 6
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 91cc1c34cf713974f63950b9102aee29703fe6601d504dcc0ab4f120b3046ac0
+Description: TRE is a lightweight, robust, and efficient POSIX compliant regexp matching library with some exciting features such as approximate (fuzzy) matching.
+Status: install ok installed
+
+Package: getopt-win32
+Version: 2.42.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 086931491ba311d8de3dfa93037143c00bf832791715b15eade9418a5edbc258
+Description: Full getopt port for unicode and multibyte windows applications
+Status: install ok installed
+
+Package: dirent
+Version: 1.26
+Architecture: x64-windows
+Multi-Arch: same
+Abi: dd74e08ea2a47783d9eb0d30eadd3468803cf045f426e9b6b84b7b94a88cea17
+Description: Dirent is a C/C++ programming interface that allows programmers to retrieve information about files and directories under Linux/UNIX. This project provides Linux compatible Dirent interface for Microsoft Windows.
+Status: install ok installed
+
+Package: libmagic
+Version: 5.48
+Depends: dirent, getopt-win32, tre, vcpkg-make
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 7f2361d039467cf9b11b7e8f36d87a569debd58ab9806571c99f565ce0ae16eb
+Description: This library can be used to classify files according to magic number tests.
+Status: install ok installed
+
+Package: abseil
+Version: 20260107.1
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1feaf5f25dfe3a54c33edea0f8882667a4d556b909b90e3fb79ed5bde6eba152
+Description: Abseil is an open-source collection of C++ library code designed to augment the C++ standard library. The Abseil library code is collected from Google's own C++ code base, has been extensively tested and used in production, and is the same code we depend on in our daily coding lives.
+    In some cases, Abseil provides pieces missing from the C++ standard; in others, Abseil provides alternatives to the standard for special needs we've found through usage in the Google code base. We denote those cases clearly within the library code we provide you.
+    Abseil is not meant to be a competitor to the standard library; we've just found that many of these utilities serve a purpose within our code base, and we now want to provide those resources to the C++ community as a whole.
+Status: install ok installed
+
+Package: re2
+Version: 2025-11-05
+Depends: abseil, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3254851853a5bef1e05f3b23a3ad0b51045e37f913060a0c7871529e6dc45e3c
+Description: RE2 is a fast, safe, thread-friendly alternative to backtracking regular expression engines like those used in PCRE, Perl, and Python. It is a C++ library.
+Status: install ok installed
+
+Package: fast-float
+Version: 8.2.10
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1ee0ae4bd71ae76195ca6bc901438a5ae52458cb5fbc0c3a2b9f08bcad062ab7
+Description: Fast and exact implementation of the C++ from_chars functions for float and double types: 4x faster than strtod
+Status: install ok installed
+
+Package: scnlib
+Version: 4.0.1
+Port-Version: 1
+Depends: fast-float, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 29f3a0d04c6192005081c6eb5a1073e90e7e3df72934e4ec9b7fba055f46d0e5
+Description: scnlib is a modern C++ library for replacing scanf and std::istream
+Status: install ok installed
+
+Package: stb
+Version: 2024-07-29
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 0b06cf55f4fb9b918e4310aa974e1d39aa559f2ed38ac4bade6a0de22c20de85
+Description: public domain header-only libraries
+Status: install ok installed
+
+Package: utfcpp
+Version: 4.2.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 24f045c1a7c665168565b2f11ff9ab137ce1eb441501dcbfcdd7b213cb0b6877
+Description: UTF-8 with C++ in a Portable Way
+Status: install ok installed
+

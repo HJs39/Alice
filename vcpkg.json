@@ -1,0 +1,21 @@
+{
+  "builtin-baseline": "386d7c478221b7ee0c97bfe6ea61dcf65121d564",
+  "dependencies": [
+    "curl",
+    "dpp",
+    "fmt",
+    "libmagic",
+    "openssl",
+    "re2",
+    "scnlib",
+    "stb",
+    "zlib",
+    "utfcpp"
+  ],
+  "overrides": [
+    {
+      "name": "dpp",
+      "version": "10.1.5"
+    }
+  ]
+}
