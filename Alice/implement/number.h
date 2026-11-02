@@ -15,9 +15,9 @@
 #pragma warning(disable:4242)
 
 namespace Alice {
-	/// <summary>
-	/// JavaScript like number class
-	/// </summary>
+	/**
+	 * @brief JavaScript like number class
+	 */
 	class number {
 	private:
 		enum state {
