@@ -116,7 +116,7 @@ namespace Alice {
 							if (!response.error) {
 								return result;
 							} else {
-								return result;
+								return std::unexpected(response.body.get<response_err_t>());
 							}
 						} else {
 							auto response = handle.create(data.dump());
@@ -145,7 +145,6 @@ namespace Alice {
 								}
 
 							} else {
-								response_err_t err{};
 								return std::unexpected(response.body.get<response_err_t>());
 							}
 						}
@@ -153,7 +152,7 @@ namespace Alice {
 				};
 				std::vector<std::string> models(std::string_view url, std::string_view key) {
 					auto& handle = integration.session.get_useable_handle();
-					handle.set_base_url(fmt::format("{}/v1/models", url));
+					handle.set_base_url(fmt::format("{}/models", url));
 					handle.set_header(fmt::format("Authorization: Bearer {}", key));
 					auto response = handle.create();
 					integration.session.release_handle(handle);
