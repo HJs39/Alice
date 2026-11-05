@@ -168,6 +168,18 @@ namespace Alice {
 				return number(i - other.d);
 			}
 		}
+		constexpr number operator-()const noexcept {
+			return cur_state ? -d : -i;
+		}
+		constexpr number operator-(number other)const noexcept {
+			if (cur_state == other.cur_state) {
+				if (cur_state)return number(d - other.d);
+				return number(i - other.i);
+			} else {
+				if (cur_state)return number(d - other.i);
+				return number(i - other.d);
+			}
+		}
 		template<typename integer_t, std::enable_if_t<std::is_integral_v<integer_t>>* = nullptr>
 		constexpr number operator-(integer_t integer)const noexcept {
 			if (cur_state)return number(d - integer);
@@ -187,6 +199,9 @@ namespace Alice {
 		friend constexpr number operator-(floating_t f, number num)noexcept {
 			if (num.cur_state)return number(f - num.d);
 			return number(f - num.i);
+		}
+		constexpr number operator+()const noexcept {
+			return cur_state ? +d : +i;
 		}
 		constexpr number operator+(number other)const noexcept {
 			if (cur_state == other.cur_state) {
