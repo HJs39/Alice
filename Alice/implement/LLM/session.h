@@ -2,6 +2,7 @@
 #ifndef _ALICE_BASE_API_REQUEST_
 #define _ALICE_BASE_API_REQUEST_
 
+#include <print>
 #include <vector>
 #include <atomic>
 #include <thread>
@@ -10,6 +11,7 @@
 #include <dpp/dpp.h>
 #include <curl/curl.h>
 #include <dpp/json.h>
+#include <glaze/json.hpp>
 #include <fmt/format.h>
 
 namespace Alice {
@@ -21,9 +23,10 @@ namespace Alice {
 		 * if error is true, the body will be a json object which contain a "err_mes" string and "http_header" string
 		 */
 		struct response_t {
-			json body;
+			glz::generic body;
 			bool error;
-			response_t(json b, bool e) :body{ b }, error{ e } {};
+			response_t(glz::generic b, bool e) :body{ b }, error{ e } {};
+			response_t() :body{}, error{} {};
 		};
 
 		struct response_err_t {
@@ -42,6 +45,7 @@ namespace Alice {
 
 				using stream_write_func_t = size_t(*)(void*, size_t, size_t, std::string*);
 
+
 				size_t stream_write_function(void* ptr, size_t size, size_t nmemb, std::string* data) {
 					std::string_view str{ static_cast<const char*>(ptr),size * nmemb };
 					if (str.starts_with("data: ") && data->empty()) {
@@ -53,11 +57,12 @@ namespace Alice {
 					}
 					if (str == "[DONE]") {
 						if (!data->empty()) {
-							try {
-								if (stream_callback)(*static_cast<std::function<void(json)>*>(stream_callback))(json::parse(*data));
-							} catch (json::parse_error e) {
-								// do nothing
+							if (stream_callback) {
+								glz::generic j{};
+								auto err = glz::read_json(j, *data);
+								if (!err)(*static_cast<std::function<void(glz::generic)>*>(stream_callback))(j);
 							}
+							// do nothing
 						}
 						return size * nmemb;
 					}
@@ -66,8 +71,12 @@ namespace Alice {
 					while (find_pos != std::string_view::npos) {
 						data->append(str.substr(0, find_pos));
 						try {
-							if (stream_callback)(*static_cast<std::function<void(json)>*>(stream_callback))(json::parse(*data));
-						} catch (json::parse_error e) {
+							if (stream_callback) {
+								glz::generic j{};
+								auto err = glz::read_json(j, *data);
+								if (!err)(*static_cast<std::function<void(glz::generic)>*>(stream_callback))(j);
+							}
+						} catch (...) {
 							continue;
 						}
 						data->clear();
@@ -79,6 +88,14 @@ namespace Alice {
 					if (!str.empty() && str != "[DONE]")data->append(str);
 
 					return size * nmemb;
+				}
+				static size_t write_function(char* ptr, size_t size, size_t nmemb, void* data) {
+					static_cast<std::string*>(data)->append(ptr, size * nmemb);
+					return size * nmemb;
+				}
+				static size_t header_writer(char* ptr, size_t size, size_t nitems, void* userdata) {
+					static_cast<std::string*>(userdata)->append(ptr, size * nitems);
+					return size * nitems;
 				}
 			public:
 				CURL* handle;
@@ -101,36 +118,68 @@ namespace Alice {
 					/*set up body*/
 					curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, body.length());
 					curl_easy_setopt(handle, CURLOPT_POSTFIELDS, body.data());
-					/*write function*/
-					auto write_function = [](void* ptr, size_t size, size_t nmemb, std::string* data)->size_t {
-						data->append(static_cast<char*>(ptr), size * nmemb);
-						return size * nmemb;
-						};
 					/*add header*/
 					curl_easy_setopt(handle, CURLOPT_HTTPHEADER, http_header);
 
+					curl_easy_setopt(handle, CURLOPT_POST, 1L);
+
 					std::string raw_response;
 					std::string header;
-					curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_function);
+					curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, &curl_handle_node::write_function);
 					curl_easy_setopt(handle, CURLOPT_WRITEDATA, &raw_response);
+					curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, &curl_handle_node::header_writer);
 					curl_easy_setopt(handle, CURLOPT_HEADERDATA, &header);
 
 					CURLcode response = curl_easy_perform(handle);
 					curl_slist_free_all(http_header);
 					http_header = nullptr;
+					response_t res{};
 					if (response != CURLE_OK) {
-						return response_t{
-							json{
-								{"err_mes",std::string{curl_easy_strerror(response)}},
-								{"http_header",header}
-							},
-							true
-						};
+						res.body["err_mes"] = std::string{ curl_easy_strerror(response) };
+						res.body["http_header"] = header;
+						res.error = true;
+					} else {
+						auto ctx = glz::read_json(res.body, raw_response);
+						if (ctx) {
+							res.error = true;
+						} else {
+							res.error = false;
+						}
 					}
-					return response_t{ json::parse(raw_response),false };
+					return res;
 				}
 
-				response_t stream_create(std::string_view body = {}, std::function<void(json)> stream_callback = nullptr) {
+				response_t get() {
+					/*add header*/
+					curl_easy_setopt(handle, CURLOPT_HTTPHEADER, http_header);
+
+					std::string raw_response;
+					std::string header;
+					curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, &curl_handle_node::write_function);
+					curl_easy_setopt(handle, CURLOPT_WRITEDATA, &raw_response);
+					curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, &curl_handle_node::header_writer);
+					curl_easy_setopt(handle, CURLOPT_HEADERDATA, &header);
+
+					CURLcode response = curl_easy_perform(handle);
+					curl_slist_free_all(http_header);
+					http_header = nullptr;
+					response_t res{};
+					if (response != CURLE_OK) {
+						res.body["err_mes"] = std::string{ curl_easy_strerror(response) };
+						res.body["http_header"] = header;
+						res.error = true;
+					} else {
+						auto ctx = glz::read_json(res.body, raw_response);
+						if (ctx) {
+							res.error = true;
+						} else {
+							res.error = false;
+						}
+					}
+					return res;
+				}
+
+				response_t stream_create(std::string_view body = {}, std::function<void(glz::generic)> stream_callback = nullptr) {
 					this->stream_callback = &stream_callback;
 					/*set up body*/
 					curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, body.length());
@@ -142,22 +191,22 @@ namespace Alice {
 					std::string header;
 					curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, &curl_handle_node::stream_write_function);
 					curl_easy_setopt(handle, CURLOPT_WRITEDATA, &raw_response);
+					curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, &curl_handle_node::header_writer);
 					curl_easy_setopt(handle, CURLOPT_HEADERDATA, &header);
 
 					CURLcode response = curl_easy_perform(handle);
 					curl_slist_free_all(http_header);
 					http_header = nullptr;
 					this->stream_callback = nullptr;
+					response_t res{};
 					if (response != CURLE_OK) {
-						return response_t{
-							json{
-								{"err_mes",std::string{curl_easy_strerror(response)}},
-								{"http_header",header}
-							},
-							true
-						};
+						res.body["err_mes"] = std::string{ curl_easy_strerror(response) };
+						res.body["http_header"] = header;
+						res.error = true;
+					} else {
+						res.error = false;
 					}
-					return response_t{ {},false };
+					return res;
 				}
 
 				response_t stream_create(std::string_view body = {}, stream_write_func_t processor = nullptr) {
@@ -171,21 +220,21 @@ namespace Alice {
 					std::string header;
 					curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, processor);
 					curl_easy_setopt(handle, CURLOPT_WRITEDATA, &raw_response);
+					curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, &curl_handle_node::header_writer);
 					curl_easy_setopt(handle, CURLOPT_HEADERDATA, &header);
 
 					CURLcode response = curl_easy_perform(handle);
 					curl_slist_free_all(http_header);
 					http_header = nullptr;
+					response_t res{};
 					if (response != CURLE_OK) {
-						return response_t{
-							json{
-								{"err_mes",std::string{curl_easy_strerror(response)}},
-								{"http_header",header}
-							},
-							true
-						};
+						res.body["err_mes"] = std::string{ curl_easy_strerror(response) };
+						res.body["http_header"] = header;
+						res.error = true;
+					} else {
+						res.error = false;
 					}
-					return response_t{ {},false };
+					return res;
 				}
 
 				~curl_handle_node() {
