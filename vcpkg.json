@@ -4,13 +4,16 @@
     "curl",
     "dpp",
     "fmt",
+    "glaze",
     "libmagic",
+    "opencv",
     "openssl",
     "re2",
     "scnlib",
     "stb",
+    "utfcpp",
     "zlib",
-    "utfcpp"
+    "faiss"
   ],
   "overrides": [
     {
