@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "fa853b4271cf7d490c306a55b7615ed0d5f57f6ecc2f35310cf8b8b2660240c42e83fd60040ac0ee25fae17ba92f500a6d886c9fb45972b3dbdbc017562750f5"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/stephenberry/glaze@v8.3.0",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "stephenberry/glaze"
+}
+  ]
+}

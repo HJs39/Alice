@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "808c77536fbfb1c8a1145506873a2b4e5cb508e48bf35f8502a2d1349b64e7581bfe7ff2f587b3edb2642cc885c60c0170a8875fad245240a1288057f4c07a42"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/google/flatbuffers@v25.12.19",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "google/flatbuffers"
+}
+  ]
+}

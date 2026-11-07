@@ -99,6 +99,79 @@ Abi: 108cf3fdb919fe7176b6b5aa265af2aae1b366ac775d1b9fde9fe804406b0c6a
 Description: D++ Extremely Lightweight C++ Discord Library.
 Status: install ok installed
 
+Package: openblas
+Version: 0.3.33
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 8247e2157ba8a52c18fbe73fe78cfcbc71fbc96da3079c228fb9a8b9a1990339
+Description: OpenBLAS is an optimized BLAS library based on GotoBLAS2 1.13 BSD version.
+Status: install ok installed
+
+Package: blas
+Version: 2023-04-14
+Port-Version: 6
+Depends: openblas, vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 39a46d56be85c8a68dad7acc0e781b845cf069b645e628cdbf76f9b76d240f15
+Description: Metapackage for packages which provide BLAS
+Status: install ok installed
+
+Package: vcpkg-gfortran
+Version: 3
+Port-Version: 3
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d5c7f969219f9c8bc834a3cb6907e78a4526cfd52388e6e2a9e8cbf9edebd089
+Description: Metaport to install gfortran dependencies from msys if VCPKG_USE_EXTERNAL_Fortran is false
+Status: install ok installed
+
+Package: lapack-reference
+Version: 3.12.1
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-gfortran
+Architecture: x64-windows
+Multi-Arch: same
+Abi: f1b35abbe1152db731d4a6dcd36328f052563657ae5e76888237c9cc9b280cc3
+Description: LAPACK - Linear Algebra PACKage
+Default-Features: blas-select
+Status: install ok installed
+
+Package: lapack-reference
+Feature: blas-select
+Architecture: x64-windows
+Multi-Arch: same
+Description: Use external optimized BLAS
+Status: install ok installed
+
+Package: lapack-reference
+Feature: noblas
+Depends: blas
+Architecture: x64-windows
+Multi-Arch: same
+Description: Use external optimized BLAS
+Status: install ok installed
+
+Package: lapack
+Version: 2023-06-10
+Port-Version: 4
+Depends: lapack-reference, vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 1dca1a5b8c002e14d504c096de75c9f81e017d714a9919ba5b0f5aa8568829b7
+Description: Metapackage for packages which provide LAPACK
+Status: install ok installed
+
+Package: faiss
+Version: 1.14.3
+Depends: blas, lapack, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 507f34c5793f7c110bbd11c1b82aa8bf48fee452a3bc33e86f61a54e9bb89c37
+Description: Faiss is a library for efficient similarity search and clustering of dense vectors.
+Status: install ok installed
+
 Package: fmt
 Version: 12.2.0
 Port-Version: 1
@@ -107,6 +180,15 @@ Architecture: x64-windows
 Multi-Arch: same
 Abi: 49b6ab51e75d3747549115f2884b1d6e04a69274940dbc5b0a160875b7029f48
 Description: {fmt} is an open-source formatting library providing a fast and safe alternative to C stdio and C++ iostreams.
+Status: install ok installed
+
+Package: glaze
+Version: 8.3.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 041fac114f692c0d1e6b8cf737c94e0db9cbb85e56851614007aade44e233a4e
+Description: One of the fastest JSON libraries in the world. Glaze reads and writes from C++ memory, simplifying interfaces and offering incredible performance.
 Status: install ok installed
 
 Package: vcpkg-make
@@ -153,6 +235,115 @@ Abi: 7f2361d039467cf9b11b7e8f36d87a569debd58ab9806571c99f565ce0ae16eb
 Description: This library can be used to classify files according to magic number tests.
 Status: install ok installed
 
+Package: libwebp
+Version: 1.6.0
+Port-Version: 3
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3eb1f740bd507abec06589a3640095dd50487e6a29f35b031d328c1c311a270e
+Description: WebP codec: library to encode and decode images in WebP format
+Default-Features: libwebpmux, nearlossless, simd
+Status: install ok installed
+
+Package: libwebp
+Feature: libwebpmux
+Architecture: x64-windows
+Multi-Arch: same
+Description: Build the libwebpmux library
+Status: install ok installed
+
+Package: libwebp
+Feature: nearlossless
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable near-lossless encoding
+Status: install ok installed
+
+Package: libwebp
+Feature: simd
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable any SIMD optimization.
+Status: install ok installed
+
+Package: libwebp
+Feature: unicode
+Architecture: x64-windows
+Multi-Arch: same
+Description: Build Unicode executables. (Adds definition UNICODE and _UNICODE)
+Status: install ok installed
+
+Package: liblzma
+Version: 5.8.4
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 68184dc3acbea949221e009388cef9377599b648f07ae57a1a6f285745417e46
+Description: Compression library with an API similar to that of zlib.
+Status: install ok installed
+
+Package: libjpeg-turbo
+Version: 3.2.0
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 8a9efda519603d95a7cb7b11d9719668155660cc5915dcda8f3b9ad6ec220a57
+Description: libjpeg-turbo is a JPEG image codec that uses SIMD instructions (MMX, SSE2, NEON, AltiVec) to accelerate baseline JPEG compression and decompression on x86, x86-64, ARM, and PowerPC systems.
+Status: install ok installed
+
+Package: tiff
+Version: 4.7.2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: aaf8dec3bda3b8f0a1425a7a94a98155c01d198c73362d4a333ff4349d94f71a
+Description: A library that supports the manipulation of TIFF image files
+Default-Features: jpeg, lzma, zip
+Status: install ok installed
+
+Package: tiff
+Feature: jpeg
+Depends: libjpeg-turbo
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support JPEG compression in TIFF image files
+Status: install ok installed
+
+Package: tiff
+Feature: lzma
+Depends: liblzma
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support LZMA compression in TIFF image files
+Status: install ok installed
+
+Package: tiff
+Feature: zip
+Depends: zlib
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support ZIP/deflate compression in TIFF image files
+Status: install ok installed
+
+Package: quirc
+Version: 1.2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 335e6be5694579634668806d78b0e84f8bbd4737ad80a9b42688c4bae2a9e5e6
+Description: quirc is one of the C library available for scanning QR Codes
+Status: install ok installed
+
+Package: libpng
+Version: 1.6.58
+Depends: vcpkg-cmake, vcpkg-cmake-config, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d4a33843417dae831395035eebcdeb9e00fea996ecd5d011e4ff11e2aba1feea
+Description: libpng is a library implementing an interface for reading and writing PNG (Portable Network Graphics) format files
+Status: install ok installed
+
 Package: abseil
 Version: 20260107.1
 Port-Version: 3
@@ -163,6 +354,179 @@ Abi: 1feaf5f25dfe3a54c33edea0f8882667a4d556b909b90e3fb79ed5bde6eba152
 Description: Abseil is an open-source collection of C++ library code designed to augment the C++ standard library. The Abseil library code is collected from Google's own C++ code base, has been extensively tested and used in production, and is the same code we depend on in our daily coding lives.
     In some cases, Abseil provides pieces missing from the C++ standard; in others, Abseil provides alternatives to the standard for special needs we've found through usage in the Google code base. We denote those cases clearly within the library code we provide you.
     Abseil is not meant to be a competitor to the standard library; we've just found that many of these utilities serve a purpose within our code base, and we now want to provide those resources to the C++ community as a whole.
+Status: install ok installed
+
+Package: utf8-range
+Version: 6.33.4
+Depends: abseil, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5e0a1562b967b6f646cc88e4ff19b489702a1d7d59823ec1a1888c259cafbf0d
+Description: Fast UTF-8 validation with Range algorithm (NEON+SSE4+AVX2)
+Status: install ok installed
+
+Package: protobuf
+Version: 6.33.4
+Port-Version: 2
+Depends: abseil, utf8-range, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 525411aa0fa9684283d13055422224ee243db4e2dc69804e61a75f778944cf95
+Description: Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data.
+Status: install ok installed
+
+Package: flatbuffers
+Version: 25.12.19
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 6833586f50e13841bdc83cd98e01711ed16bb474810627d71a85df4ec94b24fa
+Description: FlatBuffers is a cross platform serialization library architected for maximum memory efficiency. It allows you to directly access serialized data without parsing/unpacking it first, while still having great forwards/backwards compatibility.
+Status: install ok installed
+
+Package: vcpkg-get-python-packages
+Version: 2025-04-05
+Architecture: x64-windows
+Multi-Arch: same
+Abi: d49b1ee39c81fd81498a033e52a7d22da0e55c86833043f532552c58111146e5
+Status: install ok installed
+
+Package: opencv4
+Version: 4.12.0
+Port-Version: 9
+Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-get-python-packages, zlib
+Architecture: x64-windows
+Multi-Arch: same
+Abi: fb059f1de4be140050d47098c7c678cbfa0349d8846b314fa2d09b0524a32e82
+Description: Open Source Computer Vision Library
+Default-Features: calib3d, directml, dnn, dshow, fs, gapi, highgui, intrinsics, jpeg, msmf, png, quirc, thread, tiff, webp, win32ui
+Status: install ok installed
+
+Package: opencv4
+Feature: calib3d
+Architecture: x64-windows
+Multi-Arch: same
+Description: calib3d module
+Status: install ok installed
+
+Package: opencv4
+Feature: directml
+Architecture: x64-windows
+Multi-Arch: same
+Description: Build with DirectML support
+Status: install ok installed
+
+Package: opencv4
+Feature: dnn
+Depends: flatbuffers, protobuf
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable dnn module
+Status: install ok installed
+
+Package: opencv4
+Feature: dshow
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable DirectShow
+Status: install ok installed
+
+Package: opencv4
+Feature: fs
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable filesystem support
+Status: install ok installed
+
+Package: opencv4
+Feature: gapi
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable gapi module
+Status: install ok installed
+
+Package: opencv4
+Feature: highgui
+Architecture: x64-windows
+Multi-Arch: same
+Description: highgui module
+Status: install ok installed
+
+Package: opencv4
+Feature: intrinsics
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable intrinsics
+Status: install ok installed
+
+Package: opencv4
+Feature: jpeg
+Depends: libjpeg-turbo
+Architecture: x64-windows
+Multi-Arch: same
+Description: JPEG support for opencv
+Status: install ok installed
+
+Package: opencv4
+Feature: msmf
+Architecture: x64-windows
+Multi-Arch: same
+Description: Microsoft Media Foundation support for opencv
+Status: install ok installed
+
+Package: opencv4
+Feature: png
+Depends: libpng
+Architecture: x64-windows
+Multi-Arch: same
+Description: PNG support for opencv
+Status: install ok installed
+
+Package: opencv4
+Feature: quirc
+Depends: quirc
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable QR code module
+Status: install ok installed
+
+Package: opencv4
+Feature: thread
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable thread support
+Status: install ok installed
+
+Package: opencv4
+Feature: tiff
+Depends: tiff
+Architecture: x64-windows
+Multi-Arch: same
+Description: TIFF support for opencv
+Status: install ok installed
+
+Package: opencv4
+Feature: webp
+Depends: libwebp
+Architecture: x64-windows
+Multi-Arch: same
+Description: WebP support for opencv
+Status: install ok installed
+
+Package: opencv4
+Feature: win32ui
+Architecture: x64-windows
+Multi-Arch: same
+Description: Enable win32ui
+Status: install ok installed
+
+Package: opencv
+Version: 4.12.0
+Depends: opencv4
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 52303cccabcf96bdada03d04fe9f741169cc7b05aa0ce80b2aec86a3f846ca20
+Description: Open Source Computer Vision Library
 Status: install ok installed
 
 Package: re2

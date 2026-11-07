@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "c1cbf92a96dfee0a27dc0cb8d719a451efec6ea44a73bd4a8b764593624bc0e074da5aa6bca19fbc904899416aab2a82aa5659d06bb07174624cb4449252ac07"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/facebookresearch/faiss@v1.14.3",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "facebookresearch/faiss"
+}
+  ]
+}

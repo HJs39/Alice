@@ -1,0 +1,67 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "09ee552fcd9a96359230104d7bf8610a63e05d743a3b51d58c6469331729a6440444e05c616464380dbebaefdd7ee6fb06cac5fc70694af85f9c8d40201aad10"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "https://github.com/opencv/opencv/commit/468de9b36740b3355f0d5cd8be2ce28b340df120.patch?full_index=1",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "468de9b36740b3355f0d5cd8be2ce28b340df120.patch",
+  "packageFileName" : "468de9b36740b3355f0d5cd8be2ce28b340df120.patch"
+},
+{
+  "SPDXID" : "SPDXRef-resource-1",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "6efbc9f7e4ad158e648632060bac6ecb542239f1f656774378e6a2beaa42f094784c3b2755b44d599fe4eed69dd9f1f461e0be1ebcd57f9ebc261ead739ed7d5"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "https://github.com/opencv/opencv/commit/f0888a10e8266b2202d930c6974433a421e6f9a7.diff?full_index=1",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "opencv4-support-cuda-13-f0888a10e8266b2202d930c6974433a421e6f9a7.diff",
+  "packageFileName" : "opencv4-support-cuda-13-f0888a10e8266b2202d930c6974433a421e6f9a7.diff"
+},
+{
+  "SPDXID" : "SPDXRef-resource-2",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "8ac63ddd61e22cc0eaeafee4f30ae6e1cab05fc4929e2cea29070203b9ca8dfead12cc0fd7c4a87b65c1e20ec6b9ab4865a1b83fad33d114fc0708fdf107c51b"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/opencv/opencv@4.12.0",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "opencv/opencv"
+},
+{
+  "SPDXID" : "SPDXRef-resource-3",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "5f2c1a161771efa67e85b1fea395953b7744e29f61187ac5a6c54c912fb195b3aef9a5827135c3668bd0eeea5ae04a33cc433e1f6683e2b7955010a2632d168b"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "https://github.com/tiny-dnn/tiny-dnn/archive/v1.0.0a3.tar.gz",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "opencv-cache/tiny_dnn/adb1c512e09ca2c7a6faef36f9c53e59-v1.0.0a3.tar.gz",
+  "packageFileName" : "opencv-cache/tiny_dnn/adb1c512e09ca2c7a6faef36f9c53e59-v1.0.0a3.tar.gz"
+}
+  ]
+}

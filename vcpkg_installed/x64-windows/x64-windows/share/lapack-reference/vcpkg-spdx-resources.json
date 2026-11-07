@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "9749976d773830eb635498611c7f1247af8dece23fe8c08446243aa39bdcc20dd35fdc670345643cd1ec6828e379d5c2152009817e0b486c10fd89a06602e0fb"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/Reference-LAPACK/lapack@v3.12.1",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "Reference-LAPACK/lapack"
+}
+  ]
+}

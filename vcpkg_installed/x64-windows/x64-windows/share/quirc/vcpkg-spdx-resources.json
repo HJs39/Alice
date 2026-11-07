@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "0f694d16bc24012ef29a9aab8e48419bc7c346153ead3feed8e83845927f9683bb62b2e61c6872643f66b0c864c2e3c7e1a4ea4c657399b38cabfa687bedee82"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/dlbeer/quirc@v1.2",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "dlbeer/quirc"
+}
+  ]
+}

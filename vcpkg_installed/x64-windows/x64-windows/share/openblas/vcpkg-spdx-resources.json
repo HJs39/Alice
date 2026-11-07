@@ -1,0 +1,19 @@
+{
+  "packages": [
+{
+  "SPDXID" : "SPDXRef-resource-0",
+  "checksums" : 
+  [
+    {
+      "algorithm" : "SHA512",
+      "checksumValue" : "68fa2b90a93a2dfd84dfa586af07d90952fd4f2ad8dfe26061be250e80fec8f1a76ad78977f217c7dbdd26291249f1ac38a07f08ef323eee7a248c4cb67cd670"
+    }
+  ],
+  "copyrightText" : "NOASSERTION",
+  "downloadLocation" : "git+https://github.com/OpenMathLib/OpenBLAS@v0.3.33",
+  "licenseConcluded" : "NOASSERTION",
+  "licenseDeclared" : "NOASSERTION",
+  "name" : "OpenMathLib/OpenBLAS"
+}
+  ]
+}
