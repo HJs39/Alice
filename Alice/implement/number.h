@@ -159,15 +159,6 @@ namespace Alice {
 			return buffer;
 		}
 
-		constexpr number operator-(number other)const noexcept {
-			if (cur_state == other.cur_state) {
-				if (cur_state)return number(d - other.d);
-				return number(i - other.i);
-			} else {
-				if (cur_state)return number(d - other.i);
-				return number(i - other.d);
-			}
-		}
 		constexpr number operator-()const noexcept {
 			return cur_state ? -d : -i;
 		}
