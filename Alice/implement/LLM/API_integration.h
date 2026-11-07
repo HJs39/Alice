@@ -17,7 +17,7 @@
 // construct a glz::obj, use this to express it would be send to JEV API
 #define JEV_request_data(...) glz::obj{__VA_ARGS__}
 // construct a sub-object for "stats" field, expect appeared in JEV_request_data
-#define make_stats(...) "state",glz::obj{__VA_ARGS__}
+#define make_state(...) "state",glz::obj{__VA_ARGS__}
 // construct a sub-object for "questions" field, expect appeared in JEV_request_data
 #define make_questions(...) "questions",glz::obj{__VA_ARGS__}
 // construct a choice question appear in make_questions
