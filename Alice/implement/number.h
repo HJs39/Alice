@@ -29,7 +29,7 @@ namespace Alice {
 			double d;
 		};
 		state cur_state;
-		friend class std::formatter<number>;
+		friend struct std::formatter<number>;
 	public:
 		template<typename integer_t, std::enable_if_t<std::is_integral_v<integer_t>>* = nullptr>
 		constexpr number(const integer_t i)noexcept :i{ i }, cur_state{ state::Integer } {};
