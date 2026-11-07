@@ -2,7 +2,6 @@
 #ifndef _ALICE_BASE_API_REQUEST_
 #define _ALICE_BASE_API_REQUEST_
 
-#include <print>
 #include <vector>
 #include <atomic>
 #include <thread>
@@ -10,13 +9,11 @@
 #include <string_view>
 #include <dpp/dpp.h>
 #include <curl/curl.h>
-#include <dpp/json.h>
 #include <glaze/json.hpp>
 #include <fmt/format.h>
 
 namespace Alice {
 	namespace detail {
-		using json = nlohmann::json;
 		/**
 		 * @brief openai format response
 		 *
